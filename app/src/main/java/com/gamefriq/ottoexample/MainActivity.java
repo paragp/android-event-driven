@@ -57,11 +57,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Subscribe
-    public void weatherAvailable(WeatherModel weatherModel) {
+    public void weatherAvailable(final WeatherModel weatherModel) {
         // React to the event somehow!
-        weatherText.setText(String.valueOf(weatherModel.getTemperature()));
-        cityText.setText(weatherModel.getLocation());
-        button.setEnabled(true);
+        runOnUiThread(new Runnable() {
+            public void run() {
+                weatherText.setText(String.valueOf(weatherModel.getTemperature()));
+                cityText.setText(weatherModel.getLocation());
+                button.setEnabled(true);
+            }
+        });
+
     }
 
     @Override

@@ -25,6 +25,7 @@ public class DummyWeatherService extends IntentService {
 
     public DummyWeatherService() {
         super("DummyWeatherService");
+        MainApplication.getBusInstance().register(this);
     }
 
     @Override

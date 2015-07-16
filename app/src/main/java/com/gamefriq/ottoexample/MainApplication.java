@@ -12,9 +12,9 @@ import com.squareup.otto.ThreadEnforcer;
 public class MainApplication extends Application {
     private static Bus bus;
 
-    public static Bus getBusInstance(){
+    public static synchronized Bus getBusInstance(){
         if (bus == null){
-            bus = new MainThreadBus();
+            bus = new Bus(ThreadEnforcer.ANY);
         }
         return bus;
     }
